@@ -1,0 +1,61 @@
+/* Invoice Preview Area */
+.preview-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #cbd5e1; /* slightly darker background for contrast */
+}
+
+/* A4 Page Dimensions (Approximate for web)
+   A4 aspect ratio is 1 : ~1.414 
+   We will use a fixed width and let height be auto for the preview, 
+   but min-height will reflect A4 proportions. 
+   Width: 794px, Height: 1123px (at 96 DPI)
+*/
+.a4-wrapper {
+  width: 794px;
+  min-height: 1123px;
+  background-color: white;
+  box-shadow: var(--shadow-xl);
+  margin: 0 auto;
+  position: relative;
+  /* Make responsive scale down if window is too small */
+  transform-origin: top center;
+}
+
+@media (max-width: 1400px) {
+  .a4-wrapper {
+    transform: scale(0.9);
+    margin-bottom: -112px; /* compensate for scale */
+  }
+}
+@media (max-width: 1200px) {
+  .a4-wrapper {
+    transform: scale(0.75);
+    margin-bottom: -280px;
+  }
+}
+@media (max-width: 768px) {
+  .preview-scroll-container {
+    padding: 1rem;
+  }
+  .a4-wrapper {
+    transform: scale(0.45);
+    transform-origin: top left;
+    margin-bottom: -600px;
+  }
+}
+
+.invoice-preview-container {
+  width: 100%;
+  height: 100%;
+  min-height: 1123px;
+  background-color: white;
+  padding: 40px; /* Base padding */
+  box-sizing: border-box;
+}
+
+/* We will inject the HTML of the invoice inside .invoice-preview-container */
